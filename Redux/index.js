@@ -1,7 +1,11 @@
 
 const redux = require('redux')
+const reduxLogger = require('redux-logger')
+const logger = reduxLogger.createLogger()
 const createStore = redux.createStore
 const comebineReducers = redux.combineReducers
+const applyMiddleware = redux.applyMiddleware
+
 //Define CONSTANT to indicate type of action 
 
 const CAKE_ORDERED = 'CAKE_ORDERED'
@@ -92,9 +96,9 @@ const rootReducer = comebineReducers({
     iceCreame:iceCreame_reducer
 })
 //create Store 
-const store =createStore(rootReducer)
+const store =createStore(rootReducer,applyMiddleware(logger))
 console.log("initial state" , store.getState())
-const unsubscribe = store.subscribe(()=>console.log("Update State",store.getState()))
+const unsubscribe = store.subscribe(()=>{})
 store.dispatch(sellCake())
 store.dispatch(restockeCake(10))
 store.dispatch(sellIceCream(5))
