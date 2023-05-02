@@ -65,7 +65,7 @@ const fetchUserData = ()=>{
     return async function(dispatch){
         dispatch(fetchUserRequest())
         try {
-            const res = await axios.get('https://jsonplaceholder.typicode.com/users2s')
+            const res = await axios.get('https://jsonplaceholder.typicode.com/users')
             dispatch(fetchUserSuccess(res.data))
         } catch (error) {
            
@@ -80,3 +80,4 @@ store.subscribe(()=>{console.log("UpdatedState",store.getState())})
 console.log("InitialState",store.getState())
 
 store.dispatch(fetchUserData())
+console.log("heeloan")
