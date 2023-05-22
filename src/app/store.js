@@ -2,20 +2,22 @@
 import {configureStore} from "@reduxjs/toolkit"
 // const { getDefaultMiddleware } = require("@reduxjs/toolkit")
 // const cakeReducer = require("../features/cake/cakeSlice")
-import cakeReducer from "../features/cake/cakeSlice"
-// const iceCreameReducer = require('../features/icecream/icecreamSlice')
-import iceCreameReducer from "../features/icecream/icecreamSlice"
-// const reduxLogger = require('redux-logger')
-import logger from "redux-logger"
-// const logger = reduxLogger.createLogger()
 
+// Cake Slice 
+// import formReducer from "../features/cake/cakeSlice"
+// const iceCreameReducer = require('../features/icecream/icecreamSlice')
+import {formSlice} from "../features/cake/cakeSlice"
+//Icecream Slice
+// import iceCreameReducer from "../features/icecream/icecreamSlice"
+// const reduxLogger = require('redux-logger')
+import {apiSlice} from "../features/api/apiSlice"
  
 const store = configureStore({
     reducer : {
-        cake : cakeReducer,
-        ice : iceCreameReducer
+        user : formSlice.reducer,
+        [apiSlice.reducerPath] : apiSlice.reducer,
     },
-    // middleware : (getDefaultMiddleware)=> getDefaultMiddleware().concat(logger),
+    middleware: (curryGetDefaultMiddleware) => curryGetDefaultMiddleware().concat(apiSlice.middleware)
 })
 
 // module.exports = store

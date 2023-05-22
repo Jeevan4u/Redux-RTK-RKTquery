@@ -1,22 +1,29 @@
 import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
-    numOfCake : 10
+    name : null,
+    userName:null,
+    email:null,
+    address:{
+        street:null,
+        city:null
+    }
 }
-const cakeSlice = createSlice({
-    name : 'cake',
+export const formSlice = createSlice({
+    name : 'user',
     initialState ,
     reducers : {
-        ordered : (state )=>{
-            state.numOfCake = state.numOfCake - 1
-        },
-        restocked : (state,action)=>{
-            state.numOfCake = state.numOfCake + action.payload
+        submitForm : (state,action)=>{
+            console.log(action)
+            state.name = action.payload.Name,
+            state.address =action.payload.address,
+            state.email = action.payload.inputEmail,
+            state.userName = action.payload.userName
         }
     }
 })
 
 // module.exports = cakeSlice.reducer
-export default cakeSlice.reducer
+// export default formSlice.reducer
 // module.exports.cakeAction = cakeSlice.actions
-export const {ordered,restocked} =cakeSlice.actions
+export const {submitForm} =formSlice.actions
